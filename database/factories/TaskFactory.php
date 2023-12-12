@@ -18,10 +18,10 @@ class TaskFactory extends Factory
     public function definition(): array
     {
         return [
-            //
-            'customer_id' => Customer::factory(),
-            'status' => $this->faker->email(),
-            'description' => $this->faker->text(10),
+            // Para generar automáticamente con faker descomentar
+            // 'customer_id' => Customer::factory(),
+            // 'status' => $this->faker->email(),
+            // 'description' => $this->faker->text(10),
         ];
     }
 }

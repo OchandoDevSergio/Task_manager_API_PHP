@@ -18,10 +18,10 @@ class CustomerFactory extends Factory
     {
         
         return [
-            //
-            'name' => $this->faker->name(),
-            'surnames' => $this->faker->name(),
-            'email' => $this->faker->email(),
+            // Para generar automáticamente con faker descomentar
+            // 'name' => $this->faker->name(),
+            // 'surnames' => $this->faker->name(),
+            // 'email' => $this->faker->email(),
 
         ];
     }
