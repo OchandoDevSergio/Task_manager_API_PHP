@@ -17,10 +17,12 @@ class TaskFactory extends Factory
      */
     public function definition(): array
     {
+        // Para generar automáticamente con faker descomentar
+        //$status = $this->faker->randomElement(['hecho','por hacer']);
         return [
             // Para generar automáticamente con faker descomentar
             // 'customer_id' => Customer::factory(),
-            // 'status' => $this->faker->email(),
+            // 'status' => $status,
             // 'description' => $this->faker->text(10),
         ];
     }
