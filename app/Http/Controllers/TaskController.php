@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use App\Http\Resources\TaskCollection;
 
 class TaskController extends Controller
 {
@@ -13,7 +14,10 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        //Descomentar si lo queremos paginado en la API
+        //$tasks = Task::paginate();
+        $tasks = Task::all();
+        return new TaskCollection($tasks);
     }
 
     /**

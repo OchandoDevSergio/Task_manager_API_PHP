@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
+use App\Http\Resources\CustomerCollection;
 
 class CustomerController extends Controller
 {
@@ -13,7 +14,10 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        //Descomentar si lo queremos paginado en la API
+        //$customers = Customer::paginate();
+        $customers = Customer::all();
+        return new CustomerCollection($customers);
     }
 
     /**
