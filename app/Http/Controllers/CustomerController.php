@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 use App\Filters\CustomerFilter;
 use App\Http\Resources\CustomerCollection;
+use App\Http\Resources\CustomerResource;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -41,6 +42,7 @@ class CustomerController extends Controller
     public function store(StoreCustomerRequest $request)
     {
         //
+        return new CustomerResource(Customer::create($request->all()));
     }
 
     /**
@@ -49,6 +51,11 @@ class CustomerController extends Controller
     public function show(Customer $customer)
     {
         //
+        $includeTasks = request()->query('includeTasks');
+        if($includeTasks){
+            return new CustomerResource($customer->loadMissing('tasks'));
+        }
+        return new CustomerResource($customer);
     }
 
     /**
@@ -65,6 +72,7 @@ class CustomerController extends Controller
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
         //
+        $customer->update($request->all());
     }
 
     /**

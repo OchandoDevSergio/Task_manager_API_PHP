@@ -7,6 +7,7 @@ class TaskFilter extends ApiFilter{
     
     //Parametros por los que vamos a filtrar nuestros modelos
     protected $safeParams = [
+        'id' => ['eq'],
         'customerId' => ['eq'],
         'status' => ['eq'],
         'description' => ['eq'],

@@ -7,6 +7,7 @@ use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Filters\TaskFilter;
 use App\Http\Resources\TaskCollection;
+use App\Http\Resources\TaskResource;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -37,6 +38,7 @@ class TaskController extends Controller
     public function store(StoreTaskRequest $request)
     {
         //
+        return new TaskResource(Task::create($request->all()));
     }
 
     /**
@@ -61,6 +63,7 @@ class TaskController extends Controller
     public function update(UpdateTaskRequest $request, Task $task)
     {
         //
+        $task->update($request->all());
     }
 
     /**

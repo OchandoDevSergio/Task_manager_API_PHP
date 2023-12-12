@@ -11,7 +11,7 @@ class UpdateCustomerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,19 @@ class UpdateCustomerRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $method = $this->method();
+        if($method == 'PUT'){
+            return [
+                'name'=> ['required'],
+                'surnames'=> ['required'],
+                'email'=> ['required', 'email']
+            ];
+        } else {
+            return [
+                'name'=> ['sometimes','required'],
+                'surnames'=> ['sometimes','required'],
+                'email'=> ['sometimes','required', 'email']
+            ];
+        }
     }
 }

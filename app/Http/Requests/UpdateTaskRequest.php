@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateTaskRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateTaskRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +22,26 @@ class UpdateTaskRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        $method = $this->method();
+        if($method == 'PUT'){
+            return [
+                'customerId'=> ['required'],
+                'status'=> ['required',Rule::in(['hecho', 'por hacer'])],
+                'description'=> ['required']
+            ];
+        } else {
+            return [
+                'customerId'=> ['sometimes','required'],
+                'status'=> ['sometimes','required',Rule::in(['hecho', 'por hacer'])],
+                'description'=> ['sometimes','required']
+            ];
+        }
+    }
+    protected function prepareForValidation() {
+        if($this->customerId){
+            $this->merge([
+                'customer_id' => $this->customerId
+            ]);
+        };
     }
 }
