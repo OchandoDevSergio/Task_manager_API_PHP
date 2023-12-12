@@ -18,6 +18,7 @@ class TaskFilter extends ApiFilter{
     //Mapeo de los operadores (ejem.: 'eq' es igual...)
     protected $operatorMap = [
         'eq' => '=',
+        'ne' => '!=',
         'lt' => '<',
         'lte' => '<=',
         'gt' => '>',

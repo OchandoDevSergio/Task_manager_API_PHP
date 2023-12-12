@@ -19,7 +19,11 @@ class CustomerController extends Controller
 
         $filter = new CustomerFilter();
         $queryItems = $filter->transform($request);
+        $includeTasks = $request->query('includeTasks');
         $customers = Customer::where($queryItems);
+        if ($includeTasks){
+            $customers = $customers->with('tasks');
+        }
         return new CustomerCollection($customers->paginate()->appends($request->query()));
     }
 
