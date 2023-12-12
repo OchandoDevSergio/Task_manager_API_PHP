@@ -5,19 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use App\Filters\TaskFilter;
 use App\Http\Resources\TaskCollection;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //Descomentar si lo queremos paginado en la API
-        //$tasks = Task::paginate();
-        $tasks = Task::all();
-        return new TaskCollection($tasks);
+
+        $filter = new TaskFilter();
+        $queryItems = $filter->transform($request);
+        $tasks = Task::where($queryItems);
+        return new TaskCollection($tasks->paginate()->appends($request->query()));
     }
 
     /**
