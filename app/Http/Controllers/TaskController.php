@@ -38,7 +38,16 @@ class TaskController extends Controller
     public function store(StoreTaskRequest $request)
     {
         //
-        return new TaskResource(Task::create($request->all()));
+        $task = new Task;
+        $task->customer_id = $request->customerId;
+        $task->status = $request->status;
+        $task->description = $request->description;
+        $task->save();
+        $data = [
+            'message' => 'Task created succesfully',
+            'task' => $task
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -60,10 +69,20 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTaskRequest $request, Task $task)
+    //public function update(UpdateTaskRequest $request, Task $task)
+    public function update(Request $request, Task $task)
     {
         //
-        $task->update($request->all());
+        $task->update([        
+        $task->customer_id = $request->customerId,
+        $task->status = $request->status,
+        $task->description = $request->description
+        ]);
+        $data = [
+            'message' => 'Task updated succesfully',
+            'task' => $task
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -72,5 +91,11 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         //
+        $task->delete();
+        $data = [
+            'message' => 'Customer deleted succesfully',
+            'task' => $task 
+        ];
+        return response()->json($task);
     }
 }

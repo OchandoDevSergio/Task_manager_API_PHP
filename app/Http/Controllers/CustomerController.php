@@ -81,5 +81,11 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         //
+        $customer->delete();
+        $data = [
+            'message' => 'Customer deleted succesfully',
+            'customer' => $customer 
+        ];
+        return response()->json($data);
     }
 }

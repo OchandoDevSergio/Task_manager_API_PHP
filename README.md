@@ -12,7 +12,7 @@
 
 - [Funcionamiento :arrow_forward:](#funcionamiento) 
 
-- [Ejemplos de endpoints :end:](#ejemplos-de-endpoints)  
+- [Endpoints :end:](#endpoints)  
 
 #
 
@@ -41,7 +41,9 @@ Siguiendo un esquema *modelo vista controlador*, la aplicación enruta las petic
 
 Además la API emplea los controladores mediados por unos filters que nos permiten filtrar las búsquedas a trabés de la URL tal y como se desprende de los ejemplos que se muestran en el siguiente apartado.
 
-### Ejemplos de endpoints
+### Endpoints
+
+**Ejemplos de endpoints con GET**
 
 GET, http://localhost:5000/api/v1/customers
 
@@ -82,3 +84,29 @@ Trae los datos de todas las tareas realizadas por el cliente con el número de i
 GET, http://localhost:5000/api/v1/tasks?status[eq]=por%20hacer&customerId[eq]=${id}
 
 Trae los datos de todas las tareas todavía no realizadas correspondientes al cliente con el número de id introducido.
+
+**Otros endpoints**
+
+POST, http://localhost:5000/api/v1/customers
+
+Añade los datos de un nuevo cliente.
+
+POST, http://localhost:5000/api/v1/tasks
+
+Añade los datos de una nueva tarea.
+
+PUT, http://localhost:5000/api/v1/customers/{id}
+
+Modifica los datos correspondientes al cliente con el número de id introducido.
+
+PUT, http://localhost:5000/api/v1/tasks/{id}
+
+Modifica los datos correspondientes a la tarea con el número de id introducido.
+
+DELETE, http://localhost:5000/api/v1/customers/{id}
+
+Elimina los datos correspondientes al cliente con el número de id introducido.
+
+DELETE, http://localhost:5000/api/v1/tasks/{id}
+
+ELimina los datos correspondientes a la tarea con el número de id introducido.
